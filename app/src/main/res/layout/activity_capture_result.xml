@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.alex.receipttrackr.CaptureResult">
+
+    <ImageView
+        android:id="@+id/imgView"
+        android:layout_width="69dp"
+        android:layout_height="76dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/storeNameTxt"
+        android:layout_width="61dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Store:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/imgView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/totalTxt"
+        android:layout_width="61dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="Total:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/listView"
+        app:layout_constraintTop_toBottomOf="@+id/listView"
+        tools:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/storeNameInputTxt"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:text="None"
+        app:layout_constraintStart_toEndOf="@+id/storeNameTxt"
+        app:layout_constraintTop_toTopOf="@+id/storeNameTxt" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="79dp"
+        android:layout_height="30dp"
+        android:text="None"
+        app:layout_constraintStart_toEndOf="@+id/totalTxt"
+        app:layout_constraintTop_toTopOf="@+id/totalTxt" />
+
+    <Button
+        android:id="@+id/editStoreNameBtn"
+        android:layout_width="62dp"
+        android:layout_height="30dp"
+        android:text="Edit"
+        android:textSize="8sp"
+        app:layout_constraintStart_toEndOf="@+id/storeNameInputTxt"
+        app:layout_constraintTop_toTopOf="@+id/storeNameInputTxt" />
+
+    <Button
+        android:id="@+id/editTotalBtn"
+        android:layout_width="62dp"
+        android:layout_height="30dp"
+        android:text="Edit"
+        android:textSize="8sp"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="214dp"
+        android:layout_height="238dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/storeNameInputTxt" />
+
+    <TextView
+        android:id="@+id/itemsTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Items"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/listView"
+        app:layout_constraintStart_toStartOf="@+id/listView" />
+
+</android.support.constraint.ConstraintLayout>
