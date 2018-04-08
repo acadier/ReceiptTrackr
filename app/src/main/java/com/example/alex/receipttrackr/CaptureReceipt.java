@@ -217,24 +217,28 @@ public class CaptureReceipt extends AppCompatActivity implements View.OnClickLis
         return resizedBitmap;
     }
 
-    public String imageToText(Bitmap bitmap){
+    public String imageToText(Bitmap bitmap) {
         TextRecognizer txtRecog = new TextRecognizer.Builder(getApplicationContext()).build();
 
         if (txtRecog.isOperational()) {
             Frame frame = new Frame.Builder().setBitmap(bitmap).build();
-            SparseArray<TextBlock> items = txtRecog.detect(frame);
-            StringBuilder stringBuilder = new StringBuilder();
-
-            for (int i = 0; i < items.size(); i++){
-                TextBlock item = items.valueAt(i);
-                stringBuilder.append(item.getValue());
-                stringBuilder.append("\n");
+            SparseArray<TextBlock> textBlocks = txtRecog.detect(frame);
+            String blocks = "";
+            String lines = "";
+            String words = "";
+            for (int index = 0; index < textBlocks.size(); index++) {
+                TextBlock tBlock = textBlocks.valueAt(index);
+                blocks = blocks + tBlock.getValue() + "\n" + "\n";
+                for (Text line : tBlock.getComponents()) {
+                    lines = lines + line.getValue() + "\n";
+                    for (Text element : line.getComponents()) {
+                        words = words + element.getValue() + ", ";
+                    }
+                }
             }
-            return stringBuilder.toString();
+            return blocks;
         }
-
-            Log.i("OCR", "is not operational");
-            return null;
+        return null;
     }
 
     @Override
