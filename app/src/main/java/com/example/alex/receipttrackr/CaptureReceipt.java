@@ -123,7 +123,6 @@ public class CaptureReceipt extends AppCompatActivity implements View.OnClickLis
 //                    new Receipt(lines);
 
 //                    Log.e("lines", lines);
-
                     String state = Environment.getExternalStorageState();
                     File folder = null;
                     if (state.contains(Environment.MEDIA_MOUNTED)) {

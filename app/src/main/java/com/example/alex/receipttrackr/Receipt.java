@@ -5,34 +5,54 @@ import android.util.Log;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
-
-/**
- * Created by Alex on 01/04/2018.
- */
+import java.util.ArrayList;
+import java.util.Date;
 
 public class Receipt {
-    String dateTime, storeName, itemCost, itemName, totalCost, ocrText;
+    private String dateTime, storeName, itemCost, totalCost, ocrText;
+    private ArrayList<Item> items;
+    private StringReader stringReader;
+    private BufferedReader bufferedReader;
+    private Date receiptDate, captureDate;
 
-    Receipt(String inString) throws IOException {
-        ocrText = inString;
-        readLine();
-
+    Receipt() {
+        this.items = new ArrayList<>();
+        this.captureDate = new Date();
     }
 
-    private String getStoreName(){
-        return null;
+    public Boolean setItemNames(String itemLines) throws IOException {
+        stringReader = new StringReader(itemLines);
+        bufferedReader = new BufferedReader(stringReader);
+
+        String itemName = null;
+        while ((itemName = readLine(bufferedReader)) != null) {
+            Item newItem = new Item(itemName);
+            items.add(newItem);
+        }
+        return true;
     }
 
-    private String readLine() throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new StringReader(ocrText));
+    public Boolean setItemPrices(String priceLines) throws IOException {
+        stringReader = new StringReader(priceLines);
+        bufferedReader = new BufferedReader(stringReader);
+        Integer index = 0;
+
+        String itemPrice = null;
+        while ((itemPrice = readLine(bufferedReader)) != null) {
+            items.get(index).setItemPrice(itemPrice);
+            index++;
+        }
+        return true;
+    }
+
+    private String readLine(BufferedReader bufferedReader) throws IOException {
         String line = null;
 
-        while ((line = bufferedReader.readLine()) != null)
-        {
-            Log.e("OCR Line", line);
-            isPrice(line);
+        if ((line = bufferedReader.readLine()) != null) {
+            return line;
         }
-        return line;
+
+        return null;
     }
 
     private Boolean isPrice(String inLine) {
@@ -59,5 +79,10 @@ public class Receipt {
         Log.e("sorry","sorry");
         return false;
     }
+
+    public ArrayList<Item> getItems()  {
+        return this.items;
+    }
+
 
 }
