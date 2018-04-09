@@ -21,15 +21,22 @@ public class CaptureResult extends AppCompatActivity {
 
         ImageView imgView;
         Bitmap bmp;
+        File file;
 
         Intent intent = getIntent();
         imgView = findViewById(R.id.imgView);
 
 //        byte[] bytes = getIntent().getByteArrayExtra("byteArray");
-        bmp = BitmapFactory.decodeByteArray(getIntent().getByteArrayExtra("byteArray"),0, getIntent().getByteArrayExtra("byteArray").length);
+//        bmp = BitmapFactory.decodeByteArray(getIntent().getByteArrayExtra("byteArray"),0, getIntent().getByteArrayExtra("byteArray").length);
 
 //        uri = (URI)intent.getParcelableExtra("uri");
 
+//        imgView.setImageBitmap(bmp);
+
+//        file = getIntent().getExtras("file");
+
+        file =  new File(android.os.Environment.getExternalStorageDirectory(),"12.jpeg");
+        bmp = BitmapFactory.decodeFile(file.getAbsolutePath());
         imgView.setImageBitmap(bmp);
     }
 }

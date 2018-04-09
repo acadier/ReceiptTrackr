@@ -27,7 +27,9 @@
             android:value="ocr" />
 
         <activity android:name=".CaptureResult" />
-        <activity android:name=".Budget"></activity>
+        <activity android:name=".BudgetActivity"></activity>
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
+        <activity android:name=".CropActivity"></activity>
     </application>
 
 </manifest>

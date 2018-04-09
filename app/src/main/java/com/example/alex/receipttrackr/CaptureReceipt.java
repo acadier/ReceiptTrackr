@@ -107,6 +107,7 @@ public class CaptureReceipt extends AppCompatActivity implements View.OnClickLis
                     // convert byte array into bitmap
                     Bitmap loadedImage = null;
                     Bitmap rotatedBitmap = null;
+                    Bitmap compressedBitmap;
                     loadedImage = BitmapFactory.decodeByteArray(bytes, 0,
                             bytes.length);
 
@@ -117,11 +118,11 @@ public class CaptureReceipt extends AppCompatActivity implements View.OnClickLis
                             loadedImage.getWidth(), loadedImage.getHeight(),
                             rotateMatrix, false);
 
-                    lines = imageToText(rotatedBitmap);
+//                    lines = imageToText(rotatedBitmap);
 
-                    new Receipt(lines);
+//                    new Receipt(lines);
 
-                    Log.e("lines", lines);
+//                    Log.e("lines", lines);
 
                     String state = Environment.getExternalStorageState();
                     File folder = null;
@@ -139,9 +140,11 @@ public class CaptureReceipt extends AppCompatActivity implements View.OnClickLis
                     }
                     if (success) {
                         java.util.Date date = new java.util.Date();
-                        imageFile = new File(folder.getAbsolutePath()
-                                + File.separator
-                                + DateFormat.getDateTimeInstance().format(new Date()));
+                        imageFile = new File(Environment.getExternalStorageDirectory(), "zz.jpeg");
+//                        imageFile = new File(folder.getAbsolutePath(),"hello");
+//                        imageFile = new File(folder.getAbsolutePath()
+//                                + File.separator + "hello"
+//                                + DateFormat.getDateTimeInstance().format(new Date()));
 
                         imageFile.createNewFile();
                     } else {
@@ -153,7 +156,7 @@ public class CaptureReceipt extends AppCompatActivity implements View.OnClickLis
                     ByteArrayOutputStream ostream = new ByteArrayOutputStream();
 
                     // save image into gallery
-                    rotatedBitmap = resizeBitmap(rotatedBitmap, 800, 600);
+//                    rotatedBitmap = resizeBitmap(rotatedBitmap, 800, 600);
 
                     rotatedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, ostream);
 
@@ -161,6 +164,7 @@ public class CaptureReceipt extends AppCompatActivity implements View.OnClickLis
                     FileOutputStream fout = new FileOutputStream(imageFile);
                     fout.write(ostream.toByteArray());
                     fout.close();
+
                     ContentValues values = new ContentValues();
 
                     values.put(MediaStore.Images.Media.DATE_TAKEN,
@@ -176,10 +180,8 @@ public class CaptureReceipt extends AppCompatActivity implements View.OnClickLis
                     finish();
 
 
-                    Intent captureResult = new Intent(CaptureReceipt.this, CaptureResult.class);
-                    captureResult.putExtra("byteArray", ostream.toByteArray());
-                    captureResult.putExtra("ocrLines",lines);
-                    startActivity(captureResult);
+                    Intent cropActivity = new Intent(CaptureReceipt.this, CropActivity.class);
+                    startActivity(cropActivity);
 
                 } catch (Exception e) {
                     e.printStackTrace();
