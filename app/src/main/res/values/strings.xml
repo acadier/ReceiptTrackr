@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ReceiptTrackr</string>
     <string name="title_activity_budget">Budget</string>
+    <string name="crop_item_names">Crop the list of item names</string>
+    <string name="crop_item_prices">Now crop the list of item prices</string>
+    <string name="test">abc</string>
 </resources>

@@ -5,6 +5,8 @@ import android.util.Log;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -14,10 +16,12 @@ public class Receipt {
     private StringReader stringReader;
     private BufferedReader bufferedReader;
     private Date receiptDate, captureDate;
+    private DateFormat dateFormat;
 
-    Receipt() {
+    public Receipt() {
         this.items = new ArrayList<>();
         this.captureDate = new Date();
+        this.dateFormat = dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     }
 
     public Boolean setItemNames(String itemLines) throws IOException {
@@ -55,6 +59,22 @@ public class Receipt {
         return null;
     }
 
+    public ArrayList<Item> getItems()  {
+        return items;
+    }
+
+    public Integer getTotal() {
+        Integer total = 0;
+        for (Item item : items) {
+            total = total + item.getItemPrice();
+        }
+        return total;
+    }
+
+    public String getReceiptDate() {
+        return dateFormat.format(receiptDate);
+    }
+
     private Boolean isPrice(String inLine) {
         Integer length = inLine.length();
 
@@ -79,10 +99,4 @@ public class Receipt {
         Log.e("sorry","sorry");
         return false;
     }
-
-    public ArrayList<Item> getItems()  {
-        return this.items;
-    }
-
-
 }

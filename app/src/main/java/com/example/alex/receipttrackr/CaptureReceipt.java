@@ -46,11 +46,9 @@ public class CaptureReceipt extends AppCompatActivity implements View.OnClickLis
     Button captureBtn;
     SurfaceHolder surfaceHolder;
     Camera camera;
-    PictureCallback rawCallback;
     Camera.ShutterCallback shutterCallback;
     PictureCallback jpegCallback;
     ProgressBar progressBar;
-    Receipt receipt;
 
     final int RequestCameraPermissionID = 1001;
 

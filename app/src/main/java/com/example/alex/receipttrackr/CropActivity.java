@@ -19,15 +19,13 @@ import java.io.File;
 import java.io.IOException;
 
 public class CropActivity extends AppCompatActivity implements View.OnClickListener {
-    private static final int CAMERA_REQUEST = 1888;
     com.theartofdev.edmodo.cropper.CropImageView cropImageView;
     Button btn, showBtn;
-    View.OnClickListener listener;
     ImageView imageView;
     String[] lines;
     Integer index = 0;
     Receipt receipt;
-    TextView textView;
+    TextView textView, guideTxtView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +35,8 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
         showBtn = findViewById(R.id.showBtn);
         cropImageView = findViewById(R.id.cropImageView);
         imageView = findViewById(R.id.imgView);
-//        cropImageView.setAutoZoomEnabled(false);
         textView = findViewById(R.id.textView);
+        guideTxtView = findViewById(R.id.guideTxtView);
 
         btn = findViewById(R.id.button);
 
@@ -50,6 +48,8 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
         cropImageView.setImageBitmap(bitmap);
 
         receipt = new Receipt();
+
+        cropImageView.setCropRect(new Rect(300,300,1800,3100));
 
         showBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +68,8 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
         imageView.setImageBitmap(cropped);
 
             lines[index] = imageToText(cropped);
-            cropImageView.setCropRect(new Rect(800,0,800,800));
+            cropImageView.setCropRect(new Rect(2200,300,3000,3100));
+            guideTxtView.setText(getResources().getText(R.string.crop_item_prices));
             index++;
 
             if (index == 2) {

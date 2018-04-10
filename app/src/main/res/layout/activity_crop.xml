@@ -8,32 +8,30 @@
 
     <com.theartofdev.edmodo.cropper.CropImageView xmlns:custom="http://schemas.android.com/apk/res-auto"
         android:id="@+id/cropImageView"
-        android:layout_width="254dp"
-        android:layout_height="274dp"
+        android:layout_width="296dp"
+        android:layout_height="432dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="52dp"
         android:layout_marginTop="60dp"
         custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintStart_toStartOf="parent"
         custom:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:layout_width="324dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="8dp"
-        android:text="Button"
+        android:text="Next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cropImageView" />
 
     <ImageView
         android:id="@+id/imgView"
-        android:layout_width="122dp"
-        android:layout_height="146dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="74dp"
+        android:layout_height="94dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/common_full_open_on_phone" />
@@ -43,7 +41,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="TextView"
+        android:text="@string/crop_item_names"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -52,8 +51,8 @@
         android:id="@+id/showBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="92dp"
         android:text="Show"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
@@ -61,7 +60,9 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="188dp"
-        android:layout_height="125dp"
+        android:layout_height="97dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintEnd_toStartOf="@+id/showBtn"
         app:layout_constraintTop_toBottomOf="@+id/button" />
 
