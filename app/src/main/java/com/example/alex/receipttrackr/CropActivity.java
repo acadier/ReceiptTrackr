@@ -22,10 +22,11 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
     com.theartofdev.edmodo.cropper.CropImageView cropImageView;
     Button btn, showBtn;
     ImageView imageView;
-    String[] lines;
+    String[] lines, supermarkets;
     Integer index = 0;
     Receipt receipt;
     TextView textView, guideTxtView;
+    Bitmap receiptBitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,16 +39,19 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
         textView = findViewById(R.id.textView);
         guideTxtView = findViewById(R.id.guideTxtView);
 
+        supermarkets = getResources().getStringArray(R.array.supermarkets);
+
         btn = findViewById(R.id.button);
 
         btn.setOnClickListener(this);
         lines = new String[3];
 
         File file =  new File(android.os.Environment.getExternalStorageDirectory(),"zz.jpeg");
-        Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-        cropImageView.setImageBitmap(bitmap);
+        receiptBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+        cropImageView.setImageBitmap(receiptBitmap);
 
         receipt = new Receipt();
+        receipt.setRawText(getTxtfromImg(receiptBitmap));
 
         cropImageView.setCropRect(new Rect(300,300,1800,3100));
 
@@ -67,7 +71,7 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
         Bitmap cropped = cropImageView.getCroppedImage();
         imageView.setImageBitmap(cropped);
 
-            lines[index] = imageToText(cropped);
+            lines[index] = getTxtfromImg(cropped);
             cropImageView.setCropRect(new Rect(2200,300,3000,3100));
             guideTxtView.setText(getResources().getText(R.string.crop_item_prices));
             index++;
@@ -79,6 +83,7 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setReceiptData() {
+        receipt.setStoreName(supermarkets);
         try {
             receipt.setItemNames(lines[0]);
             receipt.setItemPrices(lines[1]);
@@ -87,7 +92,7 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private String imageToText(Bitmap bitmap) {
+    private String getTxtfromImg(Bitmap bitmap) {
         TextRecognizer txtRecog = new TextRecognizer.Builder(getApplicationContext()).build();
 
         if (txtRecog.isOperational()) {

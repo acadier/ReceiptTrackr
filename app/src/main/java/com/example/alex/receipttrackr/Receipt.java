@@ -1,5 +1,6 @@
 package com.example.alex.receipttrackr;
 
+import android.content.Context;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Receipt {
-    private String dateTime, storeName, itemCost, totalCost, ocrText;
+    private String rawText, storeName;
     private ArrayList<Item> items;
     private StringReader stringReader;
     private BufferedReader bufferedReader;
@@ -21,7 +22,11 @@ public class Receipt {
     public Receipt() {
         this.items = new ArrayList<>();
         this.captureDate = new Date();
-        this.dateFormat = dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        this.dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    }
+
+    public void setRawText(String rawText) {
+        this.rawText = rawText;
     }
 
     public Boolean setItemNames(String itemLines) throws IOException {
@@ -71,8 +76,22 @@ public class Receipt {
         return total;
     }
 
+    public String getCaptureDate() {
+        return null;
+    }
+
     public String getReceiptDate() {
         return dateFormat.format(receiptDate);
+    }
+
+    public Boolean setStoreName(String[] supermarkets) {
+        for (String supermarket : supermarkets) {
+            if (rawText.toLowerCase().contains(supermarket.toLowerCase())) {
+                storeName = supermarket;
+                return true;
+            }
+        }
+        return false;
     }
 
     private Boolean isPrice(String inLine) {

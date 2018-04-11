@@ -4,4 +4,22 @@
     <string name="crop_item_names">Crop the list of item names</string>
     <string name="crop_item_prices">Now crop the list of item prices</string>
     <string name="test">abc</string>
+    <array name="supermarkets">
+        <item>Aldi</item>
+        <item>Asda</item>
+        <item>Booths</item>
+        <item>Budgens</item>
+        <item>Co-op</item>
+        <item>Farmfoods</item>
+        <item>Fulton</item>
+        <item>Heron</item>
+        <item>Iceland</item>
+        <item>Lidl</item>
+        <item>Marks &amp; Spencer</item>
+        <item>Morrisons</item>
+        <item>Ocado</item>
+        <item>Sainsbury</item>
+        <item>Tesco</item>
+        <item>Waitrose</item>
+    </array>
 </resources>
