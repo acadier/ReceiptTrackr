@@ -1,8 +1,10 @@
 package com.example.alex.receipttrackr;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.SparseArray;
@@ -15,8 +17,11 @@ import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
+import org.parceler.Parcels;
+
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 
 public class CropActivity extends AppCompatActivity implements View.OnClickListener {
     com.theartofdev.edmodo.cropper.CropImageView cropImageView;
@@ -24,9 +29,10 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
     ImageView imageView;
     String[] lines, supermarkets;
     Integer index = 0;
-    Receipt receipt;
+    Receipt newReceipt;
     TextView textView, guideTxtView;
     Bitmap receiptBitmap;
+    private static final long serialVersionUID = 1L;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,15 +56,15 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
         receiptBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
         cropImageView.setImageBitmap(receiptBitmap);
 
-        receipt = new Receipt();
-        receipt.setRawText(getTxtfromImg(receiptBitmap));
+        newReceipt = new Receipt();
+        newReceipt.setRawText(getTxtfromImg(receiptBitmap));
 
         cropImageView.setCropRect(new Rect(300,300,1800,3100));
 
         showBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (Item item:receipt.getItems()) {
+                for (Item item: newReceipt.getItems()) {
                     textView.append(item.getItemName() + " : " + item.getItemPrice() + "\n");
                 }
             }
@@ -78,15 +84,25 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
 
             if (index == 2) {
                 setReceiptData();
+                showReviewActivity();
             }
 
     }
 
+    private void showReviewActivity() {
+        Intent reviewActivity = new Intent(CropActivity.this, ReviewActivity.class);
+
+        Parcelable wrapped = Parcels.wrap(newReceipt);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("example", wrapped);
+        startActivity(reviewActivity);
+    }
+
     private void setReceiptData() {
-        receipt.setStoreName(supermarkets);
+        newReceipt.setStoreName(supermarkets);
         try {
-            receipt.setItemNames(lines[0]);
-            receipt.setItemPrices(lines[1]);
+            newReceipt.setItemNames(lines[0]);
+            newReceipt.setItemPrices(lines[1]);
         } catch (IOException e) {
             e.printStackTrace();
         }

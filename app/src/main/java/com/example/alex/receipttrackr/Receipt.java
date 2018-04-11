@@ -1,23 +1,28 @@
 package com.example.alex.receipttrackr;
 
 import android.content.Context;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.io.StringReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+@org.parceler.Parcel
 public class Receipt {
     private String rawText, storeName;
     private ArrayList<Item> items;
-    private StringReader stringReader;
-    private BufferedReader bufferedReader;
+//    private StringReader stringReader;
+//    private BufferedReader bufferedReader;
     private Date receiptDate, captureDate;
     private DateFormat dateFormat;
+//    private static final long serialVersionUID = 1L;
 
     public Receipt() {
         this.items = new ArrayList<>();
@@ -30,8 +35,8 @@ public class Receipt {
     }
 
     public Boolean setItemNames(String itemLines) throws IOException {
-        stringReader = new StringReader(itemLines);
-        bufferedReader = new BufferedReader(stringReader);
+        StringReader stringReader = new StringReader(itemLines);
+        BufferedReader bufferedReader = new BufferedReader(stringReader);
 
         String itemName = null;
         while ((itemName = readLine(bufferedReader)) != null) {
@@ -42,8 +47,8 @@ public class Receipt {
     }
 
     public Boolean setItemPrices(String priceLines) throws IOException {
-        stringReader = new StringReader(priceLines);
-        bufferedReader = new BufferedReader(stringReader);
+        StringReader stringReader = new StringReader(priceLines);
+        BufferedReader bufferedReader = new BufferedReader(stringReader);
         Integer index = 0;
 
         String itemPrice = null;
@@ -77,12 +82,17 @@ public class Receipt {
     }
 
     public String getCaptureDate() {
-        return null;
+        return "hello";
+    }
+
+    public String getStoreName() {
+        return storeName;
     }
 
     public String getReceiptDate() {
         return dateFormat.format(receiptDate);
     }
+
 
     public Boolean setStoreName(String[] supermarkets) {
         for (String supermarket : supermarkets) {
@@ -118,4 +128,5 @@ public class Receipt {
         Log.e("sorry","sorry");
         return false;
     }
+
 }

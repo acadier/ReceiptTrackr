@@ -1,12 +1,18 @@
 package com.example.alex.receipttrackr;
 
 import android.util.Log;
+import java.io.Serializable;
 
+@org.parceler.Parcel
 public class Item {
     private String itemName;
     private Integer itemPrice;
+//    private static final long serialVersionUID = 1L;
 
-    Item(String inItemName) {
+    public Item() {
+
+    }
+    public Item(String inItemName) {
         this.itemName = inItemName;
     }
 

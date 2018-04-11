@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.alex.receipttrackr.ReviewActivity">
+
+    <TextView
+        android:id="@+id/storeNameLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="@string/store_name_lbl"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/storeNameTxt"
+        app:layout_constraintEnd_toStartOf="@+id/storeNameTxt" />
+
+    <EditText
+        android:id="@+id/storeNameTxt"
+        android:layout_width="122dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/receiptDateLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="@string/receipt_date_lbl"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/receiptDate"
+        app:layout_constraintEnd_toStartOf="@+id/receiptDate"
+        tools:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/receiptDate"
+        android:layout_width="122dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="@+id/storeNameTxt"
+        app:layout_constraintTop_toBottomOf="@+id/storeNameTxt"
+        tools:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/itemsLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/receipt_items_lbl"
+        app:layout_constraintEnd_toEndOf="@+id/receiptDate"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/receiptDate"
+        app:layout_constraintTop_toBottomOf="@+id/receiptDate"
+        tools:textSize="18sp" />
+
+    <ListView
+        android:id="@+id/itemsLst"
+        android:layout_width="212dp"
+        android:layout_height="223dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/itemsLbl"
+        app:layout_constraintStart_toStartOf="@+id/itemsLbl"
+        app:layout_constraintTop_toBottomOf="@+id/itemsLbl" />
+
+    <EditText
+        android:id="@+id/totalTxt"
+        android:layout_width="113dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="@+id/itemsLst"
+        app:layout_constraintStart_toStartOf="@+id/itemsLst"
+        app:layout_constraintTop_toBottomOf="@+id/itemsLst" />
+
+    <TextView
+        android:id="@+id/totalLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="@string/receipt_total"
+        app:layout_constraintBottom_toBottomOf="@+id/totalTxt"
+        app:layout_constraintEnd_toStartOf="@+id/totalTxt"
+        tools:textSize="18sp" />
+
+    <Spinner
+        android:id="@+id/Paymentspinner"
+        android:layout_width="129dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/totalTxt"
+        app:layout_constraintStart_toStartOf="@+id/totalTxt"
+        app:layout_constraintTop_toBottomOf="@+id/totalTxt" />
+
+    <TextView
+        android:id="@+id/paymentTypeLbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="@string/payment_type_lbl"
+        app:layout_constraintBottom_toBottomOf="@+id/Paymentspinner"
+        app:layout_constraintEnd_toStartOf="@+id/Paymentspinner"
+        tools:textSize="18sp" />
+
+</android.support.constraint.ConstraintLayout>

@@ -4,6 +4,11 @@
     <string name="crop_item_names">Crop the list of item names</string>
     <string name="crop_item_prices">Now crop the list of item prices</string>
     <string name="test">abc</string>
+    <string name="store_name_lbl">Store:</string>
+    <string name="receipt_date_lbl">Date:</string>
+    <string name="receipt_items_lbl">Items:</string>
+    <string name="receipt_total">Total:</string>
+    <string name="payment_type_lbl">Payment type:</string>
     <array name="supermarkets">
         <item>Aldi</item>
         <item>Asda</item>
