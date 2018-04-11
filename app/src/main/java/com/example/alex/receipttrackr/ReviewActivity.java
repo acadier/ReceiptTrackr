@@ -21,8 +21,10 @@ public class ReviewActivity extends AppCompatActivity {
 
         txt = findViewById(R.id.storeNameLbl);
 
-        Receipt receipt = Parcels.unwrap(getIntent().getParcelableExtra("example"));
-//        Log.e("okay", receipt.getCaptureDate());
+        Receipt receipt = Parcels.unwrap(getIntent().getParcelableExtra("receipt"));
+
+        //The object does not get passed so is null
+        Log.e("okay", receipt.getCaptureDate());
 
         if(receipt == null) {
             Log.i("itsnull","itsnull");

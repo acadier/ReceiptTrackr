@@ -90,11 +90,12 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void showReviewActivity() {
+        //Trying to pass receipt object to next activity...
         Intent reviewActivity = new Intent(CropActivity.this, ReviewActivity.class);
 
         Parcelable wrapped = Parcels.wrap(newReceipt);
         Bundle bundle = new Bundle();
-        bundle.putParcelable("example", wrapped);
+        bundle.putParcelable("receipt", wrapped);
         startActivity(reviewActivity);
     }
 
