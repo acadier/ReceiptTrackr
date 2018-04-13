@@ -1,12 +1,14 @@
 package com.example.alex.receipttrackr;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.Button;
@@ -16,12 +18,12 @@ import android.widget.TextView;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
+import com.google.gson.Gson;
 
 import org.parceler.Parcels;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.Serializable;
 
 public class CropActivity extends AppCompatActivity implements View.OnClickListener {
     com.theartofdev.edmodo.cropper.CropImageView cropImageView;
@@ -84,18 +86,35 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
 
             if (index == 2) {
                 setReceiptData();
-                showReviewActivity();
+
+                saveReceiptObj();
+//                getReceiptObj();
+                openReviewActivity();
             }
 
     }
 
-    private void showReviewActivity() {
-        //Trying to pass receipt object to next activity...
-        Intent reviewActivity = new Intent(CropActivity.this, ReviewActivity.class);
+    private void getReceiptObj() {
+        SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = mPrefs.getString("receiptObj", "");
+        Receipt r = gson.fromJson(json, Receipt.class);
+        Log.i("objTest",r.getCaptureDate());
+    }
 
-        Parcelable wrapped = Parcels.wrap(newReceipt);
-        Bundle bundle = new Bundle();
-        bundle.putParcelable("receipt", wrapped);
+    private void saveReceiptObj() {
+        Log.i("null obj test",newReceipt.getCaptureDate());
+
+        SharedPreferences mPrefs = getSharedPreferences("IDvalue",0);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(newReceipt);
+        prefsEditor.putString("receiptObj", json);
+        prefsEditor.commit();
+    }
+
+    private void openReviewActivity() {
+        Intent reviewActivity = new Intent(CropActivity.this, ReviewActivity.class);
         startActivity(reviewActivity);
     }
 

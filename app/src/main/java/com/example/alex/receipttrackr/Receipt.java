@@ -21,13 +21,15 @@ public class Receipt {
 //    private StringReader stringReader;
 //    private BufferedReader bufferedReader;
     private Date receiptDate, captureDate;
-    private DateFormat dateFormat;
+    private transient DateFormat dateFormat;
 //    private static final long serialVersionUID = 1L;
 
     public Receipt() {
-        this.items = new ArrayList<>();
-        this.captureDate = new Date();
-        this.dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        items = new ArrayList<>();
+        captureDate = new Date();
+        dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        rawText = null;
+        storeName = null;
     }
 
     public void setRawText(String rawText) {
@@ -75,14 +77,22 @@ public class Receipt {
 
     public Integer getTotal() {
         Integer total = 0;
+        Log.i("totalStart",total.toString());
         for (Item item : items) {
             total = total + item.getItemPrice();
+            Log.i("totalLoop",total.toString());
         }
         return total;
     }
 
+    public String getTotalString() {
+        String str = Integer.toString(getTotal());
+        str = new StringBuffer(str).insert(str.length()-2, ".").toString();
+        return str;
+    }
+
     public String getCaptureDate() {
-        return "hello";
+        return dateFormat.format(captureDate).toString();
     }
 
     public String getStoreName() {
@@ -90,7 +100,7 @@ public class Receipt {
     }
 
     public String getReceiptDate() {
-        return dateFormat.format(receiptDate);
+        return receiptDate.toString();
     }
 
 
@@ -102,6 +112,14 @@ public class Receipt {
             }
         }
         return false;
+    }
+
+    public Item getItem(Integer index) {
+        return items.get(index);
+    }
+
+    public void setItem(Item item, Integer index) {
+        items.set(index, item);
     }
 
     private Boolean isPrice(String inLine) {

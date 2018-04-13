@@ -92,7 +92,7 @@
         tools:textSize="18sp" />
 
     <Spinner
-        android:id="@+id/Paymentspinner"
+        android:id="@+id/payTypeSpin"
         android:layout_width="129dp"
         android:layout_height="36dp"
         android:layout_marginTop="20dp"
@@ -106,8 +106,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:text="@string/payment_type_lbl"
-        app:layout_constraintBottom_toBottomOf="@+id/Paymentspinner"
-        app:layout_constraintEnd_toStartOf="@+id/Paymentspinner"
+        app:layout_constraintBottom_toBottomOf="@+id/payTypeSpin"
+        app:layout_constraintEnd_toStartOf="@+id/payTypeSpin"
         tools:textSize="18sp" />
 
 </android.support.constraint.ConstraintLayout>

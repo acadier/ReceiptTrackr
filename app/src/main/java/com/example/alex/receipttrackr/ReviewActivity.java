@@ -1,33 +1,53 @@
 package com.example.alex.receipttrackr;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Spinner;
 
-import org.parceler.Parcels;
+import com.google.gson.Gson;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 
 public class ReviewActivity extends AppCompatActivity {
     Receipt receipt;
     private static final long serialVersionUID = 1L;
-    TextView txt;
+    EditText storeNameTxt, receiptDate, totalTxt;
+    ListView itemsList;
+    Spinner payTypeSpin;
+    Integer noItems;
+    ArrayList<Item> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
 
-        txt = findViewById(R.id.storeNameLbl);
+        storeNameTxt = findViewById(R.id.storeNameTxt);
+        receiptDate = findViewById(R.id.receiptDate);
+        totalTxt = findViewById(R.id.totalTxt);
+        itemsList = findViewById(R.id.itemsLst);
+        payTypeSpin = findViewById(R.id.payTypeSpin);
 
-        Receipt receipt = Parcels.unwrap(getIntent().getParcelableExtra("receipt"));
+        receipt = getReceipt();
 
-        //The object does not get passed so is null
-        Log.e("okay", receipt.getCaptureDate());
+        items = receipt.getItems();
 
-        if(receipt == null) {
-            Log.i("itsnull","itsnull");
-        }
+        storeNameTxt.setText(receipt.getStoreName());
+        receiptDate.setText(receipt.getCaptureDate());
+        totalTxt.setText(receipt.getTotalString());
+
+        CustomItemsAdaptor customItemsAdaptor = new CustomItemsAdaptor(this, items);
+        itemsList.setAdapter(customItemsAdaptor);
+    }
+
+    private Receipt getReceipt() {
+        SharedPreferences mPrefs = getSharedPreferences("IDvalue",0);
+        Gson gson = new Gson();
+        String json = mPrefs.getString("receiptObj", "");
+        Receipt receipt = gson.fromJson(json, Receipt.class);
+        return receipt;
     }
 }
