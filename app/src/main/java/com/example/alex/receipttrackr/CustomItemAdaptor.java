@@ -13,12 +13,12 @@ import java.util.ArrayList;
  * Created by Alex on 13/04/2018.
  */
 
-public class CustomItemsAdaptor extends BaseAdapter {
+public class CustomItemAdaptor extends BaseAdapter {
     private Integer count;
     private Context context;
     private ArrayList<Item> items;
 
-    public CustomItemsAdaptor(Context context, ArrayList<Item> items) {
+    public CustomItemAdaptor(Context context, ArrayList<Item> items) {
         this.count = items.size();
         this.context = context;
         this.items = items;
@@ -45,8 +45,8 @@ public class CustomItemsAdaptor extends BaseAdapter {
         TextView itemName = view.findViewById(R.id.itemNameTxt);
         TextView itemPrice = view.findViewById(R.id.itemPriceTxt);
 
-        itemName.setText(items.get(i).getItemName());
-        itemPrice.setText(items.get(i).getItemPrice().toString());
+        itemName.setText(items.get(i).getName());
+        itemPrice.setText(items.get(i).getPriceString());
 
         return view;
     }

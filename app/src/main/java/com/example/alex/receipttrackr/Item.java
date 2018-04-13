@@ -1,7 +1,6 @@
 package com.example.alex.receipttrackr;
 
 import android.util.Log;
-import java.io.Serializable;
 
 @org.parceler.Parcel
 public class Item {
@@ -16,11 +15,11 @@ public class Item {
         this.itemName = inItemName;
     }
 
-    public void setItemName(String inItemName) {
+    public void setName(String inItemName) {
         this.itemName = inItemName;
     }
 
-    public void setItemPrice(String inItemPrice) {
+    public void setPrice(String inItemPrice) {
         StringBuilder sb = new StringBuilder();
 
         for (Character c : inItemPrice.toCharArray()) {
@@ -33,12 +32,18 @@ public class Item {
 
     }
 
-    public String getItemName() {
+    public String getName() {
         Log.e("ItemName", this.itemName);
         return this.itemName;
     }
 
-    public Integer getItemPrice() {
+    public Integer getPrice() {
         return this.itemPrice;
+    }
+
+    public String getPriceString() {
+        String str = Integer.toString(getPrice());
+        str = new StringBuffer(str).insert(str.length()-2, ".").toString();
+        return str;
     }
  }

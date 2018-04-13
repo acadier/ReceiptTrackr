@@ -1,13 +1,9 @@
 package com.example.alex.receipttrackr;
 
-import android.content.Context;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.Serializable;
 import java.io.StringReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -55,7 +51,7 @@ public class Receipt {
 
         String itemPrice = null;
         while ((itemPrice = readLine(bufferedReader)) != null) {
-            items.get(index).setItemPrice(itemPrice);
+            items.get(index).setPrice(itemPrice);
             index++;
         }
         return true;
@@ -79,7 +75,7 @@ public class Receipt {
         Integer total = 0;
         Log.i("totalStart",total.toString());
         for (Item item : items) {
-            total = total + item.getItemPrice();
+            total = total + item.getPrice();
             Log.i("totalLoop",total.toString());
         }
         return total;

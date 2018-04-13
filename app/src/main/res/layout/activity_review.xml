@@ -63,7 +63,7 @@
 
     <ListView
         android:id="@+id/itemsLst"
-        android:layout_width="212dp"
+        android:layout_width="329dp"
         android:layout_height="223dp"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="@+id/itemsLbl"
@@ -109,5 +109,15 @@
         app:layout_constraintBottom_toBottomOf="@+id/payTypeSpin"
         app:layout_constraintEnd_toStartOf="@+id/payTypeSpin"
         tools:textSize="18sp" />
+
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

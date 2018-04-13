@@ -16,7 +16,13 @@
         android:layout_marginTop="60dp"
         custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintStart_toStartOf="parent"
-        custom:layout_constraintTop_toTopOf="parent" />
+        custom:layout_constraintTop_toTopOf="parent"
+        custom:cropGuidelines="off"
+        custom:cropBorderLineThickness="1dp"
+        custom:cropInitialCropWindowPaddingRatio="0"
+        custom:cropBorderCornerOffset="0dp"
+        custom:cropBorderCornerLength="2dp"
+        custom:cropAutoZoomEnabled="false"/>
 
     <Button
         android:id="@+id/button"
@@ -46,24 +52,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/showBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginTop="92dp"
-        android:text="Show"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="188dp"
-        android:layout_height="97dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginTop="48dp"
-        app:layout_constraintEnd_toStartOf="@+id/showBtn"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
 
 </android.support.constraint.ConstraintLayout>

@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,20 +19,19 @@ import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 import com.google.gson.Gson;
 
-import org.parceler.Parcels;
-
 import java.io.File;
 import java.io.IOException;
 
 public class CropActivity extends AppCompatActivity implements View.OnClickListener {
-    com.theartofdev.edmodo.cropper.CropImageView cropImageView;
-    Button btn, showBtn;
-    ImageView imageView;
-    String[] lines, supermarkets;
-    Integer index = 0;
-    Receipt newReceipt;
-    TextView textView, guideTxtView;
-    Bitmap receiptBitmap;
+    private com.theartofdev.edmodo.cropper.CropImageView cropImageView;
+    private Button btn;
+    private ImageView imageView;
+    private String[] lines, supermarkets;
+    private Integer index = 0;
+    private Rect rect;
+    private Receipt newReceipt;
+    private TextView textView, guideTxtView;
+    private Bitmap receiptBitmap;
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -41,7 +39,6 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crop);
 
-        showBtn = findViewById(R.id.showBtn);
         cropImageView = findViewById(R.id.cropImageView);
         imageView = findViewById(R.id.imgView);
         textView = findViewById(R.id.textView);
@@ -61,16 +58,8 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
         newReceipt = new Receipt();
         newReceipt.setRawText(getTxtfromImg(receiptBitmap));
 
-        cropImageView.setCropRect(new Rect(300,300,1800,3100));
+        cropImageView.setCropRect(new Rect(0,0,1260,4032));
 
-        showBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                for (Item item: newReceipt.getItems()) {
-                    textView.append(item.getItemName() + " : " + item.getItemPrice() + "\n");
-                }
-            }
-        });
     }
 
 
@@ -79,19 +68,20 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
         Bitmap cropped = cropImageView.getCroppedImage();
         imageView.setImageBitmap(cropped);
 
-            lines[index] = getTxtfromImg(cropped);
-            cropImageView.setCropRect(new Rect(2200,300,3000,3100));
-            guideTxtView.setText(getResources().getText(R.string.crop_item_prices));
-            index++;
+        rect = cropImageView.getCropRect();
 
-            if (index == 2) {
-                setReceiptData();
+        Log.i("square", cropImageView.getCropRect().toString());
 
-                saveReceiptObj();
-//                getReceiptObj();
-                openReviewActivity();
+        lines[index] = getTxtfromImg(cropped);
+        cropImageView.setCropRect(new Rect(1764,rect.top,3024,rect.bottom));
+        guideTxtView.setText(getResources().getText(R.string.crop_item_prices));
+        index++;
+
+        if (index == 2) {
+            setReceiptObj();
+            saveReceiptObj();
+            showReviewActivity();
             }
-
     }
 
     private void getReceiptObj() {
@@ -113,12 +103,12 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
         prefsEditor.commit();
     }
 
-    private void openReviewActivity() {
+    private void showReviewActivity() {
         Intent reviewActivity = new Intent(CropActivity.this, ReviewActivity.class);
         startActivity(reviewActivity);
     }
 
-    private void setReceiptData() {
+    private void setReceiptObj() {
         newReceipt.setStoreName(supermarkets);
         try {
             newReceipt.setItemNames(lines[0]);
