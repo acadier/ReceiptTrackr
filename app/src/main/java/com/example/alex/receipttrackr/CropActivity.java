@@ -1,7 +1,6 @@
 package com.example.alex.receipttrackr;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
@@ -17,7 +16,6 @@ import android.widget.TextView;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
-import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,11 +31,14 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textView, guideTxtView;
     private Bitmap receiptBitmap;
     private static final long serialVersionUID = 1L;
+    private DataStore dataStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crop);
+
+        dataStore = new DataStore(this);
 
         cropImageView = findViewById(R.id.cropImageView);
         imageView = findViewById(R.id.imgView);
@@ -73,34 +74,15 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
         Log.i("square", cropImageView.getCropRect().toString());
 
         lines[index] = getTxtfromImg(cropped);
-        cropImageView.setCropRect(new Rect(1764,rect.top,3024,rect.bottom));
+        cropImageView.setCropRect(new Rect(1764, rect.top,3024, rect.bottom));
         guideTxtView.setText(getResources().getText(R.string.crop_item_prices));
         index++;
 
         if (index == 2) {
             setReceiptObj();
-            saveReceiptObj();
+            dataStore.saveReceipt(newReceipt);
             showReviewActivity();
             }
-    }
-
-    private void getReceiptObj() {
-        SharedPreferences mPrefs = getPreferences(MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = mPrefs.getString("receiptObj", "");
-        Receipt r = gson.fromJson(json, Receipt.class);
-        Log.i("objTest",r.getCaptureDate());
-    }
-
-    private void saveReceiptObj() {
-        Log.i("null obj test",newReceipt.getCaptureDate());
-
-        SharedPreferences mPrefs = getSharedPreferences("IDvalue",0);
-        SharedPreferences.Editor prefsEditor = mPrefs.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(newReceipt);
-        prefsEditor.putString("receiptObj", json);
-        prefsEditor.commit();
     }
 
     private void showReviewActivity() {

@@ -13,12 +13,12 @@ import java.util.ArrayList;
  * Created by Alex on 13/04/2018.
  */
 
-public class CustomItemAdaptor extends BaseAdapter {
+public class ItemListAdaptor extends BaseAdapter {
     private Integer count;
     private Context context;
     private ArrayList<Item> items;
 
-    public CustomItemAdaptor(Context context, ArrayList<Item> items) {
+    public ItemListAdaptor(Context context, ArrayList<Item> items) {
         this.count = items.size();
         this.context = context;
         this.items = items;

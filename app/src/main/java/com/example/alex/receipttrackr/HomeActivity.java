@@ -50,5 +50,10 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
             Intent myIntent = new Intent(HomeActivity.this, BudgetActivity.class);
             HomeActivity.this.startActivity(myIntent);
         }
+
+        if (i == 3) {
+            Intent myIntent = new Intent(HomeActivity.this, ViewReceiptsActivity.class);
+            HomeActivity.this.startActivity(myIntent);
+        }
     }
 }

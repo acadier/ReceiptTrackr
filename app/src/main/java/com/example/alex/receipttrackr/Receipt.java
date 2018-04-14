@@ -71,7 +71,13 @@ public class Receipt {
         return items;
     }
 
-    public Integer getTotal() {
+    public String getPriceToString(Integer price) {
+        String str = Integer.toString(price);
+        str = new StringBuffer(str).insert(str.length()-2, ".").toString();
+        return str;
+    }
+
+    public Integer getTotalPrice() {
         Integer total = 0;
         Log.i("totalStart",total.toString());
         for (Item item : items) {
@@ -82,7 +88,7 @@ public class Receipt {
     }
 
     public String getTotalString() {
-        String str = Integer.toString(getTotal());
+        String str = Integer.toString(getTotalPrice());
         str = new StringBuffer(str).insert(str.length()-2, ".").toString();
         return str;
     }

@@ -196,9 +196,6 @@ public class CaptureReceipt extends AppCompatActivity implements View.OnClickLis
         camera.takePicture(shutterCallback, null, jpegCallback);
     }
 
-
-
-
     public Bitmap resizeBitmap(Bitmap bm, int newWidth, int newHeight) {
         int width = bm.getWidth();
         int height = bm.getHeight();
@@ -214,30 +211,6 @@ public class CaptureReceipt extends AppCompatActivity implements View.OnClickLis
                 bm, 0, 0, width, height, matrix, false);
         bm.recycle();
         return resizedBitmap;
-    }
-
-    public String imageToText(Bitmap bitmap) {
-        TextRecognizer txtRecog = new TextRecognizer.Builder(getApplicationContext()).build();
-
-        if (txtRecog.isOperational()) {
-            Frame frame = new Frame.Builder().setBitmap(bitmap).build();
-            SparseArray<TextBlock> textBlocks = txtRecog.detect(frame);
-            String blocks = "";
-            String lines = "";
-            String words = "";
-            for (int index = 0; index < textBlocks.size(); index++) {
-                TextBlock tBlock = textBlocks.valueAt(index);
-                blocks = blocks + tBlock.getValue() + "\n" + "\n";
-                for (Text line : tBlock.getComponents()) {
-                    lines = lines + line.getValue() + "\n";
-                    for (Text element : line.getComponents()) {
-                        words = words + element.getValue() + ", ";
-                    }
-                }
-            }
-            return blocks;
-        }
-        return null;
     }
 
     @Override
@@ -279,10 +252,6 @@ public class CaptureReceipt extends AppCompatActivity implements View.OnClickLis
         camera.stopPreview();
         camera.release();
         camera = null;
-
-    }
-
-    public void startCamera(){
 
     }
 }
