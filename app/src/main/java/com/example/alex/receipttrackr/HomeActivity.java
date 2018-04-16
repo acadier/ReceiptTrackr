@@ -42,7 +42,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
         if (i == 0) {
-            Intent myIntent = new Intent(HomeActivity.this, CaptureReceipt.class);
+            Intent myIntent = new Intent(HomeActivity.this, CaptureReceiptActivity.class);
             HomeActivity.this.startActivity(myIntent);
         }
 

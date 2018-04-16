@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import java.io.File;
 import java.net.URI;
 
-public class CaptureResult extends AppCompatActivity {
+public class CaptureResultActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

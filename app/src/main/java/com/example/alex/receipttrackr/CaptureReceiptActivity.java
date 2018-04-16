@@ -17,32 +17,22 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.vision.Frame;
-import com.google.android.gms.vision.text.Text;
-import com.google.android.gms.vision.text.TextBlock;
-import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.text.DateFormat;
-import java.util.Date;
 
 //import com.google.android.gms.vision.CameraSource;
 
-public class CaptureReceipt extends AppCompatActivity implements View.OnClickListener, SurfaceHolder.Callback {
+public class CaptureReceiptActivity extends AppCompatActivity implements View.OnClickListener, SurfaceHolder.Callback {
 
     SurfaceView cameraView;
-    TextView textView;
     Button captureBtn;
     SurfaceHolder surfaceHolder;
     Camera camera;
@@ -79,7 +69,6 @@ public class CaptureReceipt extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_capture_receipt);
 
         cameraView = findViewById(R.id.surfaceView);
-        textView = findViewById(R.id.textView);
         captureBtn = findViewById(R.id.captureBtn);
         progressBar = findViewById(R.id.progressBar);
 
@@ -170,14 +159,14 @@ public class CaptureReceipt extends AppCompatActivity implements View.OnClickLis
                     values.put(MediaStore.MediaColumns.DATA,
                             imageFile.getAbsolutePath());
 
-                    CaptureReceipt.this.getContentResolver().insert(
+                    CaptureReceiptActivity.this.getContentResolver().insert(
                             MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 
                     setResult(Activity.RESULT_OK); //add this
                     finish();
 
 
-                    Intent cropActivity = new Intent(CaptureReceipt.this, CropActivity.class);
+                    Intent cropActivity = new Intent(CaptureReceiptActivity.this, CropActivity.class);
                     startActivity(cropActivity);
 
                 } catch (Exception e) {
