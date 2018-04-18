@@ -13,8 +13,8 @@ import android.hardware.Camera.PictureCallback;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -40,29 +40,7 @@ public class CaptureReceiptActivity extends AppCompatActivity implements View.On
     PictureCallback jpegCallback;
     ProgressBar progressBar;
 
-    final int RequestCameraPermissionID = 1001;
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode)
-        {
-            case RequestCameraPermissionID:
-            {
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                {
-                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
-                    return;
-                }
-            }
-        }
-    }
-
-    @Override
-    public void overridePendingTransition(int enterAnim, int exitAnim) {
-        super.overridePendingTransition(enterAnim, exitAnim);
-    }
-
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -180,6 +158,7 @@ public class CaptureReceiptActivity extends AppCompatActivity implements View.On
 
     }
 
+
     @Override
     public void onClick(View view) {
         camera.takePicture(shutterCallback, null, jpegCallback);
@@ -243,4 +222,6 @@ public class CaptureReceiptActivity extends AppCompatActivity implements View.On
         camera = null;
 
     }
+
+
 }

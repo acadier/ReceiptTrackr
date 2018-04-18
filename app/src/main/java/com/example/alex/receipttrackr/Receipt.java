@@ -89,7 +89,11 @@ public class Receipt {
 
     public String getTotalString() {
         String str = Integer.toString(getTotalPrice());
-        str = new StringBuffer(str).insert(str.length()-2, ".").toString();
+
+        if (str.length() > 2) {
+            str = new StringBuffer(str).insert(str.length()-2, ".").toString();
+            return str;
+        }
         return str;
     }
 

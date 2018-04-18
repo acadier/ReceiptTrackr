@@ -26,8 +26,5 @@ public class ViewReceiptsActivity extends AppCompatActivity {
         ReceiptListAdaptor receiptListAdaptor = new ReceiptListAdaptor(this, receipts);
         receiptLstView.setAdapter(receiptListAdaptor);
 
-
-
-
     }
 }

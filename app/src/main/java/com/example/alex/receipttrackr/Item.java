@@ -9,10 +9,12 @@ public class Item {
 //    private static final long serialVersionUID = 1L;
 
     public Item() {
-
+        this.itemName = "";
+        this.itemPrice = 0;
     }
     public Item(String inItemName) {
         this.itemName = inItemName;
+        this.itemPrice = 0;
     }
 
     public void setName(String inItemName) {
@@ -27,8 +29,14 @@ public class Item {
                 sb.append(c);
             }
         }
-//        Log.e("Item price", itemPrice.toString());
-        this.itemPrice = Integer.parseInt(sb.toString());
+
+        if (sb.toString() == "") {
+            this.itemPrice = 0;
+        }
+        else
+        {
+            this.itemPrice = Integer.parseInt(sb.toString());
+        }
 
     }
 
@@ -43,6 +51,10 @@ public class Item {
 
     public String getPriceString() {
         String str = Integer.toString(getPrice());
+
+        if (str.length() < 3) {
+            str += 00;
+        }
         str = new StringBuffer(str).insert(str.length()-2, ".").toString();
         return str;
     }

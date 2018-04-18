@@ -42,7 +42,6 @@ public class CropActivity extends AppCompatActivity implements View.OnClickListe
 
         cropImageView = findViewById(R.id.cropImageView);
         imageView = findViewById(R.id.imgView);
-        textView = findViewById(R.id.textView);
         guideTxtView = findViewById(R.id.guideTxtView);
 
         supermarkets = getResources().getStringArray(R.array.supermarkets);
