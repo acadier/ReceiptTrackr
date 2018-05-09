@@ -51,6 +51,7 @@ public class Item {
 
     public String getPriceString() {
         String str = Integer.toString(getPrice());
+        Integer length = str.length();
 
         if (str.length() < 3) {
             str += 00;

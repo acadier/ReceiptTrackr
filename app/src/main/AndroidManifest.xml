@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomeActivity">
+        <activity android:name=".ViewReceiptsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +31,7 @@
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
         <activity android:name=".CropActivity" />
         <activity android:name=".ReviewActivity" />
-        <activity android:name=".ViewReceiptsActivity"></activity>
+        <activity android:name=".HomeActivity"></activity>
     </application>
 
 </manifest>
