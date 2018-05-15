@@ -36,12 +36,13 @@ public class Item {
         else
         {
             this.itemPrice = Integer.parseInt(sb.toString());
+//            Log.e("price", itemPrice.toString());
         }
 
     }
 
     public String getName() {
-        Log.e("ItemName", this.itemName);
+//        Log.e("ItemName", this.itemName);
         return this.itemName;
     }
 
@@ -53,10 +54,16 @@ public class Item {
         String str = Integer.toString(getPrice());
         Integer length = str.length();
 
-        if (str.length() < 3) {
-            str += 00;
+        if (length < 2) {
+            str = new StringBuffer(str).insert(0, "00").toString();
         }
+        else if (length < 3) {
+            str = new StringBuffer(str).insert(0, "0").toString();
+        }
+
         str = new StringBuffer(str).insert(str.length()-2, ".").toString();
+
+        Log.e("getPrice", str);
         return str;
     }
  }

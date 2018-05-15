@@ -9,30 +9,31 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import org.xml.sax.Parser;
 
 @org.parceler.Parcel
 public class Receipt {
-    private String rawText, storeName;
+    private String rawText, storeName, paymentMethod, printedDate;
     private ArrayList<Item> items;
-//    private StringReader stringReader;
-//    private BufferedReader bufferedReader;
     private Date receiptDate, captureDate;
     private transient DateFormat dateFormat;
-//    private static final long serialVersionUID = 1L;
 
     public Receipt() {
         items = new ArrayList<>();
         captureDate = new Date();
         dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        rawText = null;
-        storeName = null;
+        rawText = "";
+        storeName = "";
+        paymentMethod = "";
     }
 
     public void setRawText(String rawText) {
         this.rawText = rawText;
     }
 
-    public Boolean setItemNames(String itemLines) throws IOException {
+    public Integer setItemNames(String itemLines) throws IOException {
+        Integer count = 0;
         StringReader stringReader = new StringReader(itemLines);
         BufferedReader bufferedReader = new BufferedReader(stringReader);
 
@@ -40,21 +41,48 @@ public class Receipt {
         while ((itemName = readLine(bufferedReader)) != null) {
             Item newItem = new Item(itemName);
             items.add(newItem);
+            count++;
         }
-        return true;
+        Log.e("namesCount", count.toString());
+        return count;
     }
 
-    public Boolean setItemPrices(String priceLines) throws IOException {
+    public Boolean setItemPrices(String priceLines, Integer noItems) throws IOException {
         StringReader stringReader = new StringReader(priceLines);
         BufferedReader bufferedReader = new BufferedReader(stringReader);
         Integer index = 0;
 
         String itemPrice = null;
         while ((itemPrice = readLine(bufferedReader)) != null) {
+            if (index >= noItems) {
+                Log.e("count","hit");
+                return false;
+            }
+
+            Log.e("count", index.toString() + " " + noItems.toString());
             items.get(index).setPrice(itemPrice);
             index++;
+
         }
-        return true;
+        if (index == noItems) {
+            Log.e("pass",index.toString() + " " + noItems.toString());
+            return true;
+        } else {
+            Log.e("fail","fail");
+            return false;
+        }
+
+    }
+
+    public Integer countLines(String lines) throws IOException {
+        StringReader stringReader = new StringReader(lines);
+        BufferedReader bufferedReader = new BufferedReader(stringReader);
+        Integer count = 0;
+
+        while ((bufferedReader.readLine()) != null) {
+            count++;
+        }
+        return count;
     }
 
     private String readLine(BufferedReader bufferedReader) throws IOException {
@@ -90,15 +118,29 @@ public class Receipt {
     public String getTotalString() {
         String str = Integer.toString(getTotalPrice());
 
-        if (str.length() > 2) {
-            str = new StringBuffer(str).insert(str.length()-2, ".").toString();
-            return str;
+        Integer length = str.length();
+
+        if (length < 2) {
+            str = new StringBuffer(str).insert(0, "00").toString();
         }
+        else if (length < 3) {
+            str = new StringBuffer(str).insert(0, "0").toString();
+        }
+
+        str = new StringBuffer(str).insert(str.length()-2, ".").toString();
+
+        Log.e("getPrice", str);
         return str;
+
+//        return getPriceString(getTotalPrice());
     }
 
-    public String getCaptureDate() {
+    public String getCaptureDateString() {
         return dateFormat.format(captureDate).toString();
+    }
+
+    public Date getCaptureDate() {
+        return this.captureDate;
     }
 
     public String getStoreName() {
@@ -110,14 +152,37 @@ public class Receipt {
     }
 
 
-    public Boolean setStoreName(String[] supermarkets) {
+    public void setStoreName(String[] supermarkets) {
         for (String supermarket : supermarkets) {
             if (rawText.toLowerCase().contains(supermarket.toLowerCase())) {
                 storeName = supermarket;
-                return true;
             }
         }
-        return false;
+    }
+
+    public void setPaymentMethod(String[] methods) {
+        for (String paymentMethod : methods) {
+            if (rawText.toLowerCase().contains(paymentMethod.toLowerCase())) {
+                this.paymentMethod = paymentMethod;
+            }
+        }
+    }
+
+    public void setPrintedDate() {
+//        try {
+//            List<Date> dates = new Parser().parse(rawText).get(0).getDates();
+//            printedDate = dates.get(0).toString();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+    }
+
+    public String getPrintedDate() {
+        return this.printedDate;
+    }
+
+    public String getPaymentMethod() {
+        return this.paymentMethod;
     }
 
     public Item getItem(Integer index) {

@@ -1,7 +1,5 @@
-package com.example.alex.receipttrackr;
+package com.example.alex.receipttrackr.Activities;
 
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,11 +8,12 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.example.alex.receipttrackr.DataStore;
+import com.example.alex.receipttrackr.R;
+import com.example.alex.receipttrackr.Receipt;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class BudgetActivity extends AppCompatActivity {
 
@@ -43,11 +42,9 @@ public class BudgetActivity extends AppCompatActivity {
 
         receipts = dataStore.loadReceipts();
 
-        for (Receipt r : receipts) {
-            totalSpent = totalSpent + r.getTotalPrice();
-        }
 
-        totalSpentTxt.setText(priceToString(totalSpent));
+
+        totalSpentTxt.setText(priceToString(getTotalSpentSinceLastWeek()));
 
         invalidateOptionsMenu();
 
@@ -92,7 +89,18 @@ public class BudgetActivity extends AppCompatActivity {
 
     public String priceToString(Integer price) {
         String str = Integer.toString(price);
+        Integer length = str.length();
+
+        if (length < 2) {
+            str = new StringBuffer(str).insert(0, "00").toString();
+        }
+        else if (length < 3) {
+            str = new StringBuffer(str).insert(0, "0").toString();
+        }
+
         str = new StringBuffer(str).insert(str.length()-2, ".").toString();
+
+        Log.e("getPric", str);
         return str;
     }
 
@@ -100,5 +108,28 @@ public class BudgetActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 //        setBudget();
+    }
+
+    public Integer getTotalSpent() {
+        Integer totalSpent = 0;
+        for (Receipt r : receipts) {
+            totalSpent = totalSpent + r.getTotalPrice();
+        }
+        return totalSpent;
+    }
+
+    public Integer getTotalSpentSinceLastWeek() {
+        Date lastWeek = getPreviousWeekDate();
+        Integer totalSpent = 0;
+        for (Receipt r : receipts) {
+            if (r.getCaptureDate().after(lastWeek)) {
+                totalSpent = totalSpent + r.getTotalPrice();
+            }
+        }
+        return totalSpent;
+    }
+
+    private Date getPreviousWeekDate(){
+        return new Date(System.currentTimeMillis()-7*24*60*60*1000);
     }
 }

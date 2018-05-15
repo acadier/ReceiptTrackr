@@ -9,6 +9,9 @@
     <string name="receipt_items_lbl">Items:</string>
     <string name="receipt_total">Total:</string>
     <string name="payment_type_lbl">Payment type:</string>
+    <string name="noReceiptsInfo">There are no receipts to show</string>
+    <string name="capture_error_dialog">Unable to read receipt</string>
+    <string name="pound_symbol">£</string>
     <array name="supermarkets">
         <item>Aldi</item>
         <item>Asda</item>
@@ -26,5 +29,12 @@
         <item>Sainsbury</item>
         <item>Tesco</item>
         <item>Waitrose</item>
+    </array>
+    <array name="paymentMethods">
+        <item>Visa</item>
+        <item>MasterCard</item>
+        <item>American Express</item>
+        <item>Cash</item>
+        <item>Card</item>
     </array>
 </resources>

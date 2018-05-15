@@ -45,8 +45,10 @@ public class ItemListAdaptor extends BaseAdapter {
         TextView itemName = view.findViewById(R.id.itemNameTxt);
         TextView itemPrice = view.findViewById(R.id.itemPriceTxt);
 
-        itemName.setText(items.get(i).getName());
-        itemPrice.setText(items.get(i).getPriceString());
+        Item item = items.get(i);
+
+        itemName.setText(item.getName());
+        itemPrice.setText(item.getPriceString());
 
         return view;
     }

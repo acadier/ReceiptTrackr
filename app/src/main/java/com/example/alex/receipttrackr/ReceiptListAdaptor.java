@@ -46,7 +46,7 @@ public class ReceiptListAdaptor extends BaseAdapter {
         TextView totalTxt = view.findViewById(R.id.totalTxt);
         TextView storeNameTxt = view.findViewById(R.id.storeNameTxt);
 
-        dateTxt.setText(receipts.get(i).getCaptureDate());
+        dateTxt.setText(receipts.get(i).getCaptureDateString());
         totalTxt.setText(receipts.get(i).getTotalString());
         storeNameTxt.setText(receipts.get(i).getStoreName());
 

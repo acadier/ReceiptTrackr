@@ -3,6 +3,7 @@ package com.example.alex.receipttrackr;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -11,7 +12,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import static android.content.Context.MODE_PRIVATE;
-
 
 public class DataStore {
     private Context context;
@@ -38,6 +38,20 @@ public class DataStore {
         }
 
         return receipts;
+    }
+
+    public void removeReceiptFromArray(int index) {
+        receipts.remove(index);
+
+        sharedPreferences = context.getSharedPreferences("sharedp", 0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        gson = new Gson();
+        json = gson.toJson(receipts);
+        editor.putString("receipts", json);
+        editor.apply();
+
+        Log.e("abc", String.valueOf(receipts.size()));
+
     }
 
     public void saveReceiptToArray(Receipt receipt) {

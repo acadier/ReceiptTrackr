@@ -1,10 +1,8 @@
 package com.example.alex.receipttrackr;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -13,8 +11,6 @@ import android.hardware.Camera.PictureCallback;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -47,7 +43,7 @@ public class CaptureReceiptActivity extends AppCompatActivity implements View.On
         setContentView(R.layout.activity_capture_receipt);
 
         cameraView = findViewById(R.id.surfaceView);
-        captureBtn = findViewById(R.id.captureBtn);
+        captureBtn = findViewById(R.id.retryBtn);
         progressBar = findViewById(R.id.progressBar);
 
         surfaceHolder = cameraView.getHolder();
