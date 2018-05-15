@@ -1,4 +1,4 @@
-package com.example.alex.receipttrackr;
+package com.example.alex.receipttrackr.Classes;
 
 import android.util.Log;
 

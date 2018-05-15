@@ -13,14 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewReceiptsActivity">
+        <activity android:name=".Activities.ViewReceiptsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CaptureReceiptActivity" />
+        <activity android:name=".Activities.CaptureReceiptActivity" />
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
@@ -29,10 +29,10 @@
         <activity android:name=".CaptureResultActivity" />
         <activity android:name=".Activities.BudgetActivity" />
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
-        <activity android:name=".CropActivity" />
-        <activity android:name=".ReviewActivity" />
+        <activity android:name=".Activities.CropActivity" />
+        <activity android:name=".Activities.ReviewActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".ViewReceiptActivity"></activity>
+        <activity android:name=".Activities.ViewReceiptActivity"></activity>
     </application>
 
 </manifest>

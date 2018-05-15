@@ -8,9 +8,9 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.example.alex.receipttrackr.DataStore;
+import com.example.alex.receipttrackr.Classes.DataStore;
 import com.example.alex.receipttrackr.R;
-import com.example.alex.receipttrackr.Receipt;
+import com.example.alex.receipttrackr.Classes.Receipt;
 
 import java.util.ArrayList;
 import java.util.Date;

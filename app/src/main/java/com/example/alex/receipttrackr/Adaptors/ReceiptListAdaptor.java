@@ -1,4 +1,4 @@
-package com.example.alex.receipttrackr;
+package com.example.alex.receipttrackr.Adaptors;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.example.alex.receipttrackr.R;
+import com.example.alex.receipttrackr.Classes.Receipt;
 
 import java.util.ArrayList;
 

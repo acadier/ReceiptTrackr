@@ -1,4 +1,4 @@
-package com.example.alex.receipttrackr;
+package com.example.alex.receipttrackr.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -10,17 +10,25 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import com.example.alex.receipttrackr.Classes.DataStore;
+import com.example.alex.receipttrackr.Classes.Item;
+import com.example.alex.receipttrackr.Adaptors.ItemListAdaptor;
+import com.example.alex.receipttrackr.R;
+import com.example.alex.receipttrackr.Classes.Receipt;
 
 import java.util.ArrayList;
 
 public class ReviewActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
     private Receipt receipt;
     private static final long serialVersionUID = 1L;
-    private EditText storeNameTxt, receiptDate, totalTxt, paymentMethodTxt;
+    private EditText storeNameTxt, receiptDate, paymentMethodTxt;
+    private TextView totalTxt;
     private ListView itemList;
     private Integer noItems;
     private ArrayList<Item> items;
-    private Button saveBtn;
+    private Button saveBtn, retakeBtn, homeBtn;
     private ArrayList<Receipt> receipts;
     private DataStore dataStore;
     private ItemListAdaptor itemListAdaptor;
@@ -42,6 +50,9 @@ public class ReviewActivity extends AppCompatActivity implements View.OnClickLis
         itemList = findViewById(R.id.itemsLst);
         paymentMethodTxt = findViewById(R.id.paymentMethodTxt);
         saveBtn = findViewById(R.id.saveBtn);
+        retakeBtn = findViewById(R.id.retakeBtn);
+        homeBtn = findViewById(R.id.homeBtn);
+
 
         receipt = dataStore.loadReceipt();
 
@@ -52,6 +63,8 @@ public class ReviewActivity extends AppCompatActivity implements View.OnClickLis
         setupItemList();
 
         saveBtn.setOnClickListener(this);
+        retakeBtn.setOnClickListener(this);
+        homeBtn.setOnClickListener(this);
     }
 
     private void setReceiptFields() {
@@ -63,16 +76,37 @@ public class ReviewActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.saveBtn:
+                saveReceipt();
+                showViewReceiptsActivity();
+                break;
 
+            case R.id.homeBtn:
+                showViewReceiptsActivity();
+
+            case R.id.retakeBtn:
+                showCaptureReceiptActivity();
+        }
+    }
+
+    private void showCaptureReceiptActivity() {
+        Intent myIntent = new Intent(ReviewActivity.this, CaptureReceiptActivity.class);
+        startActivity(myIntent);
+    }
+
+    private void showViewReceiptsActivity() {
+        Intent myIntent = new Intent(ReviewActivity.this, ViewReceiptsActivity.class);
+        startActivity(myIntent);
+    }
+
+    private void saveReceipt() {
         dataStore.saveReceiptToArray(receipt);
 
         ArrayList<Receipt> receipts = dataStore.loadReceipts();
         Integer size = receipts.size();
 
         Log.i("arrayCountSaved", Integer.toString(receipts.get(size-1).getTotalPrice()));
-
-        Intent myIntent = new Intent(ReviewActivity.this, ViewReceiptsActivity.class);
-        startActivity(myIntent);
     }
 
 

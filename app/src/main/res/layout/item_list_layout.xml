@@ -8,14 +8,15 @@
 
     <TextView
         android:id="@+id/itemNameTxt"
-        android:layout_width="109dp"
+        android:layout_width="209dp"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/poundLbl"
         android:layout_alignBottom="@+id/poundLbl"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="17dp"
         android:text="itemNameTxt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,8 +29,9 @@
         android:layout_alignBottom="@+id/itemPriceTxt"
         android:layout_alignEnd="@+id/itemPriceTxt"
         android:layout_alignRight="@+id/itemPriceTxt"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="17dp"
         android:text="£"
         app:layout_constraintStart_toEndOf="@+id/itemNameTxt"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="17dp"
         android:layout_toEndOf="@+id/itemNameTxt"
         android:layout_toRightOf="@+id/itemNameTxt"
         android:text="itemPriceTxt"

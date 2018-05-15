@@ -1,4 +1,4 @@
-package com.example.alex.receipttrackr;
+package com.example.alex.receipttrackr.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +12,10 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.alex.receipttrackr.Activities.BudgetActivity;
+import com.example.alex.receipttrackr.Classes.DataStore;
+import com.example.alex.receipttrackr.R;
+import com.example.alex.receipttrackr.Classes.Receipt;
+import com.example.alex.receipttrackr.Adaptors.ReceiptListAdaptor;
 
 import java.util.ArrayList;
 

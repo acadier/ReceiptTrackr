@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.alex.receipttrackr.Activities.BudgetActivity;
+import com.example.alex.receipttrackr.Activities.CaptureReceiptActivity;
+import com.example.alex.receipttrackr.Activities.ViewReceiptsActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;

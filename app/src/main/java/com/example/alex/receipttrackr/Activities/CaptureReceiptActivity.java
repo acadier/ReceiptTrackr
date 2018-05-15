@@ -1,4 +1,4 @@
-package com.example.alex.receipttrackr;
+package com.example.alex.receipttrackr.Activities;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -19,6 +19,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.example.alex.receipttrackr.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

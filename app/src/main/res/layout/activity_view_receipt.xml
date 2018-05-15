@@ -4,103 +4,129 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.alex.receipttrackr.ReviewActivity">
+    tools:context="com.example.alex.receipttrackr.Activities.ReviewActivity">
 
     <TextView
         android:id="@+id/storeNameLbl"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
+        android:layout_height="22dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
         android:text="@string/store_name_lbl"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/storeNameTxt"
-        app:layout_constraintEnd_toStartOf="@+id/storeNameTxt" />
-
-    <TextView
-        android:id="@+id/storeNameTxt"
-        android:layout_width="122dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/storeNameTxt"
+        android:layout_width="119dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/storeNameLbl"
+        app:layout_constraintStart_toEndOf="@+id/storeNameLbl"
+        app:layout_constraintTop_toTopOf="@+id/storeNameLbl" />
+
+    <TextView
         android:id="@+id/receiptDateLbl"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
+        android:layout_height="27dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
         android:text="@string/receipt_date_lbl"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/receiptDateTxt"
-        app:layout_constraintEnd_toStartOf="@+id/receiptDateTxt"
+        app:layout_constraintStart_toEndOf="@+id/storeNameTxt"
+        app:layout_constraintTop_toTopOf="parent"
         tools:textSize="18sp" />
 
     <TextView
         android:id="@+id/receiptDateTxt"
-        android:layout_width="122dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="80dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="date"
-        app:layout_constraintEnd_toEndOf="@+id/storeNameTxt"
-        app:layout_constraintTop_toBottomOf="@+id/storeNameTxt"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/receiptDateLbl"
+        app:layout_constraintStart_toEndOf="@+id/receiptDateLbl"
+        app:layout_constraintTop_toTopOf="@+id/receiptDateLbl"
+        app:layout_constraintVertical_bias="1.0"
         tools:textSize="18sp" />
 
     <TextView
         android:id="@+id/itemsLbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="@string/receipt_items_lbl"
-        app:layout_constraintEnd_toEndOf="@+id/receiptDateTxt"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="@+id/receiptDateTxt"
-        app:layout_constraintTop_toBottomOf="@+id/receiptDateTxt"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/itemsLst"
+        app:layout_constraintStart_toStartOf="@+id/itemsLst"
         tools:textSize="18sp" />
 
     <ListView
         android:id="@+id/itemsLst"
-        android:layout_width="329dp"
-        android:layout_height="223dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="@+id/itemsLbl"
-        app:layout_constraintStart_toStartOf="@+id/itemsLbl"
-        app:layout_constraintTop_toBottomOf="@+id/itemsLbl" />
+        android:layout_width="317dp"
+        android:layout_height="281dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        app:layout_constraintBottom_toTopOf="@+id/paymentTypeLbl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/receiptDateLbl"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/totalTxt"
-        android:layout_width="113dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_width="64dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:ems="10"
         android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="@+id/itemsLst"
-        app:layout_constraintStart_toStartOf="@+id/itemsLst"
-        app:layout_constraintTop_toBottomOf="@+id/itemsLst" />
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/totalLbl"
+        app:layout_constraintStart_toEndOf="@+id/totalLbl"
+        app:layout_constraintTop_toTopOf="@+id/totalLbl" />
 
     <TextView
         android:id="@+id/totalLbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="72dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:text="@string/receipt_total"
-        app:layout_constraintBottom_toBottomOf="@+id/totalTxt"
-        app:layout_constraintEnd_toStartOf="@+id/totalTxt"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:textSize="18sp" />
 
     <TextView
         android:id="@+id/paymentTypeLbl"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginTop="36dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp"
         android:text="@string/payment_type_lbl"
-        app:layout_constraintEnd_toStartOf="@+id/paymentMethodTxt"
-        app:layout_constraintTop_toBottomOf="@+id/totalLbl"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/totalTxt"
+        app:layout_constraintStart_toEndOf="@+id/totalTxt"
+        app:layout_constraintTop_toTopOf="@+id/totalTxt"
+        app:layout_constraintVertical_bias="0.0"
         tools:textSize="18sp" />
 
     <Button
@@ -108,20 +134,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:text="Delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/paymentMethodTxt"
-        android:layout_width="147dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_width="92dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/totalTxt"
-        app:layout_constraintStart_toStartOf="@+id/totalTxt"
-        app:layout_constraintTop_toBottomOf="@+id/totalTxt" />
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/paymentTypeLbl"
+        app:layout_constraintStart_toEndOf="@+id/paymentTypeLbl"
+        app:layout_constraintTop_toTopOf="@+id/paymentTypeLbl" />
+
 
 </android.support.constraint.ConstraintLayout>

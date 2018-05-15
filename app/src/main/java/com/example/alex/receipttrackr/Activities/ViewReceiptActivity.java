@@ -1,13 +1,18 @@
-package com.example.alex.receipttrackr;
+package com.example.alex.receipttrackr.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.alex.receipttrackr.Classes.DataStore;
+import com.example.alex.receipttrackr.Classes.Item;
+import com.example.alex.receipttrackr.Adaptors.ItemListAdaptor;
+import com.example.alex.receipttrackr.R;
+import com.example.alex.receipttrackr.Classes.Receipt;
 
 import java.util.ArrayList;
 

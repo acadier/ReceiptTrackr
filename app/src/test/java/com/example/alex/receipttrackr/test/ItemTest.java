@@ -1,10 +1,6 @@
 package com.example.alex.receipttrackr.test;
 
-import com.example.alex.receipttrackr.Item;
-
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class ItemTest {
 

@@ -12,6 +12,11 @@
     <string name="noReceiptsInfo">There are no receipts to show</string>
     <string name="capture_error_dialog">Unable to read receipt</string>
     <string name="pound_symbol">£</string>
+    <string name="new_budget_apply">Apply</string>
+    <string name="new_budget_lbl">- New Weekly Budget -</string>
+    <string name="total_spent_lbl">Total spent this week:</string>
+    <string name="budget_not_set_lbl">Not set</string>
+    <string name="weekly_budget_lbl">- Your Weekly Budget -</string>
     <array name="supermarkets">
         <item>Aldi</item>
         <item>Asda</item>
