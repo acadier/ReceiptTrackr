@@ -30,19 +30,19 @@
 
     <TextView
         android:id="@+id/storeNameTxt"
-        android:layout_width="57dp"
-        android:layout_height="17dp"
-        android:layout_marginEnd="44dp"
+        android:layout_width="70dp"
+        android:layout_height="16dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="8dp"
         android:text="storeName"
-        android:textAlignment="viewEnd"
-        app:layout_constraintEnd_toEndOf="@+id/dateTxt"
+        app:layout_constraintStart_toEndOf="@+id/noItemsTxt"
         app:layout_constraintTop_toBottomOf="@+id/dateTxt"
         tools:textSize="15sp" />
 
     <TextView
         android:id="@+id/totalTxt"
-        android:layout_width="63dp"
+        android:layout_width="45dp"
         android:layout_height="17dp"
         android:layout_marginTop="8dp"
         android:text="totalCostTxt"
@@ -50,5 +50,16 @@
         app:layout_constraintStart_toEndOf="@+id/poundLbl"
         app:layout_constraintTop_toBottomOf="@+id/dateTxt"
         tools:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/noItemsTxt"
+        android:layout_width="47dp"
+        android:layout_height="17dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="noItems"
+        app:layout_constraintStart_toEndOf="@+id/totalTxt"
+        app:layout_constraintTop_toBottomOf="@+id/dateTxt" />
 
 </android.support.constraint.ConstraintLayout>

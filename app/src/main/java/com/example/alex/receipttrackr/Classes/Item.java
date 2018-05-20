@@ -21,7 +21,7 @@ public class Item {
         this.itemName = inItemName;
     }
 
-    public void setPrice(String inItemPrice) {
+    public void setPrice(String inItemPrice, Boolean isDiscount) {
         StringBuilder sb = new StringBuilder();
 
         for (Character c : inItemPrice.toCharArray()) {
@@ -39,6 +39,10 @@ public class Item {
 //            Log.e("price", itemPrice.toString());
         }
 
+        if (isDiscount) {
+            this.itemPrice *= -1;
+        }
+
     }
 
     public String getName() {
@@ -53,6 +57,8 @@ public class Item {
     public String getPriceString() {
         String str = Integer.toString(getPrice());
         Integer length = str.length();
+
+        str = str.replace("-", "");
 
         if (length < 2) {
             str = new StringBuffer(str).insert(0, "00").toString();

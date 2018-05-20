@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 
 public class ReceiptListAdaptor extends BaseAdapter {
-    private Integer count;
+    private Integer count, noItems;
     private Context context;
     private ArrayList<Receipt> receipts;
 
@@ -44,14 +44,17 @@ public class ReceiptListAdaptor extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = LayoutInflater.from(context).inflate(R.layout.receipt_list_layout, null);
+        Receipt receipt = receipts.get(i);
 
         TextView dateTxt = view.findViewById(R.id.dateTxt);
         TextView totalTxt = view.findViewById(R.id.totalTxt);
         TextView storeNameTxt = view.findViewById(R.id.storeNameTxt);
+        TextView noItemsTxt = view.findViewById(R.id.noItemsTxt);
 
-        dateTxt.setText(receipts.get(i).getCaptureDateString());
-        totalTxt.setText(receipts.get(i).getTotalString());
-        storeNameTxt.setText(receipts.get(i).getStoreName());
+        dateTxt.setText(receipt.getCaptureDateString());
+        totalTxt.setText(receipt.getTotalString());
+        storeNameTxt.setText(receipt.getStoreName());
+        noItemsTxt.setText(receipt.getNoItemsAsString() + " items");
 
         return view;
     }

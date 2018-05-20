@@ -28,7 +28,7 @@ public class ReviewActivity extends AppCompatActivity implements View.OnClickLis
     private ListView itemList;
     private Integer noItems;
     private ArrayList<Item> items;
-    private Button saveBtn, retakeBtn, homeBtn;
+    private Button saveBtn, retakeBtn, homeBtn, addDiscountBtn;
     private ArrayList<Receipt> receipts;
     private DataStore dataStore;
     private ItemListAdaptor itemListAdaptor;
@@ -52,6 +52,7 @@ public class ReviewActivity extends AppCompatActivity implements View.OnClickLis
         saveBtn = findViewById(R.id.saveBtn);
         retakeBtn = findViewById(R.id.retakeBtn);
         homeBtn = findViewById(R.id.homeBtn);
+        addDiscountBtn = findViewById(R.id.addDiscountBtn);
 
 
         receipt = dataStore.loadReceipt();
@@ -65,6 +66,7 @@ public class ReviewActivity extends AppCompatActivity implements View.OnClickLis
         saveBtn.setOnClickListener(this);
         retakeBtn.setOnClickListener(this);
         homeBtn.setOnClickListener(this);
+        addDiscountBtn.setOnClickListener(this);
     }
 
     private void setReceiptFields() {
@@ -84,9 +86,15 @@ public class ReviewActivity extends AppCompatActivity implements View.OnClickLis
 
             case R.id.homeBtn:
                 showViewReceiptsActivity();
+                break;
 
             case R.id.retakeBtn:
                 showCaptureReceiptActivity();
+                break;
+
+            case R.id.addDiscountBtn:
+                addDiscount();
+                break;
         }
     }
 
@@ -116,6 +124,35 @@ public class ReviewActivity extends AppCompatActivity implements View.OnClickLis
         itemList.setOnItemClickListener(this);
     }
 
+    private void addDiscount() {
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(ReviewActivity.this);
+        View mView = getLayoutInflater().inflate(R.layout.discount_dialog, null);
+        final EditText itemName = mView.findViewById(R.id.itemNameTxt);
+        final EditText itemPrice = mView.findViewById(R.id.itemPriceTxt);
+        Button saveBtn = mView.findViewById(R.id.saveBtn);
+
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Item discount = new Item();
+
+                discount.setName(itemName.getText().toString());
+                discount.setPrice(itemPrice.getText().toString(), true);
+
+                items.add(discount);
+                totalTxt.setText(receipt.getTotalString());
+
+                setupItemList();
+                dialog.hide();
+            }
+        });
+
+        mBuilder.setView(mView);
+        dialog = mBuilder.create();
+        dialog.show();
+    }
+
+
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
 
@@ -130,7 +167,7 @@ public class ReviewActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View view) {
                 items.get(i).setName(itemName.getText().toString());
-                items.get(i).setPrice(itemPrice.getText().toString());
+                items.get(i).setPrice(itemPrice.getText().toString(), false);
                 totalTxt.setText(receipt.getTotalString());
                 itemListAdaptor.notifyDataSetChanged();
                 dialog.hide();

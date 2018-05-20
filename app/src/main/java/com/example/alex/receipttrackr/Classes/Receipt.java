@@ -32,6 +32,10 @@ public class Receipt {
         this.rawText = rawText;
     }
 
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
     public Integer setItemNames(String itemLines) throws IOException {
         Integer count = 0;
         StringReader stringReader = new StringReader(itemLines);
@@ -60,7 +64,7 @@ public class Receipt {
             }
 
             Log.e("count", index.toString() + " " + noItems.toString());
-            items.get(index).setPrice(itemPrice);
+            items.get(index).setPrice(itemPrice, false);
             index++;
 
         }
@@ -97,6 +101,10 @@ public class Receipt {
 
     public ArrayList<Item> getItems()  {
         return items;
+    }
+
+    public String getNoItemsAsString() {
+        return String.valueOf(items.size());
     }
 
     public String getPriceToString(Integer price) {
